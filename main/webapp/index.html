@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <style type="text/css">
+    .active-title {
+        background: blue;
+        color: lightblue;
+    }
+    .active-author {
+        background: red;
+        color: magenta;
+    }
+    .active-year {
+        background: pink;
+        color: palevioletred;
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Banking Application</a>
+            </div>
+        </div>
+    </nav>
+    
+
+
+    <div>
+      <input type="text" placeholder="Search" ng-model="userSearch">
+    </div>
+
+   <div ng-hide="isHidden" ng-init ="books=[{'title': 'To Kill A Mocking Bird', 'author':'Harper Lee', 'releaseYear': '1960'},{'title': 'Tale of Two Cities', 'author': 'Chales Dickens', 'releaseYear': '1859'},
+   {'title':'Moby Dick', 'author':'Herman Melvile', 'releaseYear':'1851'},
+   {'title':'The Brothers Karamasov', 'author':'Fyodor Dostoyevsky', 'releaseYear':'1880'},
+   {'title':'Harry Potter and The Philosophers Stone', 'author':'J K Rowling', 'releaseYear':'1997'}
+   ]"> 
+       
+    <h3><span>Books</span></h3>
+    	<ul>
+    		<li ng-repeat="book in books">{{book}}</li>
+        </ul>
+            <h3><span>Table example</span></h3>
+    	<table class="table table-dark table-striped">
+    		<tr>
+    			<th  ng-click="titleClicked = 'clicked'">title</th>
+    			<th  ng-click="authorClicked = 'clicked'">author</th>
+    			<th  ng-click="yearClicked = 'clicked'">releaseYear</th>
+    		</tr>
+    		<tr ng-repeat="book in books | filter:userSearch">
+    			<td ng-class="{'active-title': titleClicked=='clicked' }">{{book.title |  uppercase}}</td>
+    			<td ng-class="{'active-author': authorClicked=='clicked' }">{{book.author | uppercase}}</td>
+    			<td ng-class="{'active-year': yearClicked=='clicked' }">{{book.releaseYear}}</td>
+    		</tr>
+    	</table>
+    </div>
+    <div>hide<input type="checkbox" ng-model="isHidden"></div> 
+
+
+	<link rel="stylesheet" href="scripts/bootstrap.min.css"> 
+    <script src="scripts/jquery-2.1.4.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/ui-router.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.titleClicked='clicked';
+            $scope.authorClicked='clicked';
+            $scope.yearClicked='clicked';
+        });
+    </script>
+
+</body>
+</html>

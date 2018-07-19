@@ -1,0 +1,8 @@
+<div ng-controller="traineeController as traineeCtrl">
+
+
+    <select size="5" ng-model="selectedTrainee" ng-options="x.name for x in traineeCtrl.trainees">{{traineeCtrl.trainees}}</select>
+
+    <a ng-click="traineeCtrl.passTrainee(selectedTrainee);">Further Info</a>
+
+</div>
